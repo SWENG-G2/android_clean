@@ -61,7 +61,11 @@ public class CircleElementTest {
         assertEquals(expectedBorderPaint.getStyle(), actualBorderPaint.getStyle());
 
         // verify the functions were called correctly
-        verify(canvas, times(2)).drawCircle(eq(10f), eq(30f), eq(10f), any(Paint.class));
+        verify(canvas, times(2)).drawCircle(
+                eq(10f),
+                eq(30f),
+                eq(10f),
+                any(Paint.class));
     }
 
     @Test
