@@ -19,9 +19,9 @@ public class RectangleParserTest {
     private static final String GOOD_XML = "<rectangle width=\"800\" height=\"600\" xCoordinate=\"50\" yCoordinate=\"350\" colour=\"#00FFFFFF\" borderColour=\"#FF0000FF\" borderWidth=\"5\" shadowRadius=\"5\" shadowDx=\"5\" shadowDy=\"7\" shadowColour=\"#0000FFFF\" />";
     private static final int GOOD_XML_WIDTH = 800;
     private static final int GOOD_XML_HEIGHT = 600;
-    private static final int GOOD_XML_COLOUR = android.R.color.holo_blue_bright;
+    private static final int GOOD_XML_COLOUR = Color.CYAN;
     private static final int GOOD_XML_BORDER_WIDTH = 5;
-    private static final int GOOD_XML_BORDER_COLOUR = android.R.color.holo_red_dark;
+    private static final int GOOD_XML_BORDER_COLOUR = COLOR.RED;
     private static final int GOOD_XML_X_COORDINATE = 50;
     private static final int GOOD_XML_Y_COORDINATE = 350;
 
