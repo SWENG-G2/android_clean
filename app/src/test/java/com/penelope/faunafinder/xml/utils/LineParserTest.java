@@ -23,6 +23,7 @@ public class LineParserTest {
     private static final int GOOD_XML_FROM_Y = 110;
     private static final int GOOD_XML_TO_X = 400;
     private static final int GOOD_XML_TO_Y = 130;
+    //colour is wrong for now
     private static final int GOOD_XML_COLOUR = android.R.color.holo_red_light;
 
     private static final String BAD_XML = "<line thickness=\"vnefei\" fromX=\"djcvwdv\" fromY=\"wdvkncssi\" toX=\"fved\" toY=\"wjdvcb\" colour=\"123\" />";
@@ -42,7 +43,6 @@ public class LineParserTest {
     public void parseLineWorks() throws XmlPullParserException, IOException {
         XmlPullParser xmlPullParser = getXpp(GOOD_XML);
         LineElement realLineElement = LineParser.parseLine(xmlPullParser);
-        LineElement expectedLineElement = new LineElement(5,100,110,400,130, android.R.color.holo_red_light);
         int realLineElementThickness = realLineElement.getThickness();
         int realLineElementFromX = realLineElement.getFromX();
         int realLineElementFromY = realLineElement.getFromY();
