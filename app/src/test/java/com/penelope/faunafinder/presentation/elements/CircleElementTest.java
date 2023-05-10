@@ -52,13 +52,21 @@ public class CircleElementTest {
         expectedBorderPaint.setStrokeWidth(BORDER_WIDTH);
         expectedBorderPaint.setStyle(Paint.Style.STROKE);
 
+        // create paint object with expected params
+        Paint expectedFillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        expectedFillPaint.setColor(COLOUR);
+        expectedFillPaint.setStyle(Paint.Style.FILL);
+
         // get the actual paint object
         Paint actualBorderPaint = circleElement.getBorderPaint();
+        Paint actualFillPaint = circleElement.getFillPaint();
 
         // verify expected against the actual
         assertEquals(expectedBorderPaint.getColor(), actualBorderPaint.getColor());
         assertEquals(expectedBorderPaint.getStrokeWidth(), actualBorderPaint.getStrokeWidth(), 0.001);
         assertEquals(expectedBorderPaint.getStyle(), actualBorderPaint.getStyle());
+        assertEquals(expectedFillPaint.getColor(), actualFillPaint.getColor());
+        assertEquals(expectedFillPaint.getStyle(), actualFillPaint.getStyle());
 
         // verify the functions were called correctly
         verify(canvas, times(2)).drawCircle(
@@ -81,5 +89,4 @@ public class CircleElementTest {
 
         assertNull(circleElement.getSearchableContent());
     }
-
 }
