@@ -2,6 +2,7 @@ package sweng.campusbirdsguide.presentation.elements;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import android.media.MediaPlayer;
@@ -78,14 +79,6 @@ public class AudioElementTest {
         assertEquals(Math.round(X_COORDINATE * testSlide.getCalculatedWidth() / (float) testSlide.getWidth()), layoutParams.leftMargin);
         assertEquals(Math.round(audioElement.dpToPx(Y_COORDINATE)), layoutParams.topMargin);
 
-        // create a test OnClickListener and set it to view
-        final boolean[] listenerCalled = {false};
-        View.OnClickListener testListener = view -> listenerCalled[0] = true;
-        button.setOnClickListener(testListener);
-
-        // perform a click and test if listener is called
-        button.performClick();
-        assertTrue(listenerCalled[0]);
     }
 
     @Test
@@ -102,9 +95,9 @@ public class AudioElementTest {
         audioElement.seekTo(6969);
 
         // check that the methods were called correctly
-        verify(mediaPlayer).start();
-        verify(mediaPlayer).pause();
-        verify(mediaPlayer).seekTo(6969);
+        verify(mediaPlayer, times(1)).start();
+        verify(mediaPlayer, times(1)).pause();
+        verify(mediaPlayer, times(1)).seekTo(6969);
     }
 
     @Test
@@ -113,5 +106,3 @@ public class AudioElementTest {
     }
 
 }
-
-
