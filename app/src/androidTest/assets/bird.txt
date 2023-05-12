@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<presentation xmlns="urn:SWENG" xmlns:SWENG="https://raw.githubusercontent.com/SWENG-G2/xml_standard/proposal-1/standard.xsd">
+  <info>
+    <title>American Pekin</title>
+    <author>The admin</author>
+    <date>2023-05-12</date>
+    <numSlides>0</numSlides>
+  </info>
+  <slide width="1920" height="485" title="heroSlide">
+    <rectangle width="1920" height="100" xCoordinate="0" yCoordinate="0" colour="#E89266FF"/>
+    <text xCoordinate="20" yCoordinate="25" colour="#000000FF" fontName="mono" fontSize="28" width="-4" height="-5">American Pekin</text>
+    <audio url="audio/1/American Pekin.wav" loop="false" xCoordinate="-3" yCoordinate="0"/>
+    <image url="image/1/American Pekin Main image_processed.png" width="1700" height="360" xCoordinate="-2" yCoordinate="115"/>
+    <circle radius="175" xCoordinate="-2" yCoordinate="-120" colour="#00000000" borderWidth="15" borderColour="#8A8178FF"/>
+  </slide>
+  <slide width="1920" height="-1" title="About me">
+    <video xCoordinate="-2" yCoordinate="0" width="1820" height="250" loop="false" url="video/1/American Pekin about me video.MP4"/>
+    <text xCoordinate="20" yCoordinate="250" colour="#000000FF" fontName="mono" fontSize="18" width="1880" height="-5">American Pekins are white fluffy ducks, originating from China, but introduced to many countries around the world for farming purposes. Chances are, if you&amp;rsquo;re served a duck dish at a restaurant, it comes from this duck species! Though raised primarily for meat, Pekin ducks are docile and friendly, and are known to even be kept as pets! Pekin ducks generally stay grounded due to their large heavy bodies which make flying difficult, although they do have many other characteristics common to other ducks such as having strong wings and hollow bones. These ducks however, do not share the same defences as wild ducks, and hence are susceptible to night-time predators.</text>
+  </slide>
+  <slide width="1920" height="-1" title="Diet">
+    <image url="image/1/American Pekin diet image.JPG" width="1700" height="200" xCoordinate="-2" yCoordinate="0"/>
+    <text xCoordinate="20" yCoordinate="210" colour="#000000FF" fontName="mono" fontSize="18" width="1880" height="-5">Pekin ducks love to eat bite-sized vegetables such as peas, corn and leafy greens. They are also known to be fans of non-citrus fruits as well as any worms that they may find. Just as most ducks on campus though, they will eat most things they can find, and so its important not to feed them food of low nutritional value such as bread, which is why the campus bird food is a great substitute as it contains many of the nutrients that are essential for keeping the ducks healthy.</text>
+  </slide>
+  <slide width="1920" height="-1" title="Location">
+    <image url="image/1/American Pekin location image.JPG" width="1700" height="200" xCoordinate="-2" yCoordinate="0"/>
+    <text xCoordinate="20" yCoordinate="210" colour="#000000FF" fontName="mono" fontSize="18" width="1880" height="-5">American Pekins, as the name suggests, are a bird bred most commonly in the United States. These large white ducks were, however, introduced to the USA and the rest of the world from China, which is what the name &amp;lsquo;Pekin&amp;rsquo; actually means. These birds are most commonly found in both commercial and private farms, generally in large numbers. On campus, the only known white Pekin duck can normally be found on the banks of the Derwent lake, socialising with students, or scavenging for any food scraps.</text>
+  </slide>
+</presentation>

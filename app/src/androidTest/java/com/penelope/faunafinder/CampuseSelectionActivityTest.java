@@ -61,7 +61,7 @@ public class CampusSelectionActivityTest {
 
     @Test
     public void listIsPopulated() {
-        try (ActivityScenario<MainActivity> ignored = ActivityScenario.launch(testIntent)) {
+        try (ActivityScenario<CampusSelectionActivity> ignored = ActivityScenario.launch(testIntent)) {
             Espresso.onView(ViewMatchers.withId(R.id.recycler_view)).check(
                     ViewAssertions.matches(ViewMatchers.hasChildCount(EXPECTED_CAMPUSES)));
         }
@@ -69,7 +69,7 @@ public class CampusSelectionActivityTest {
 
     @Test
     public void listIsInteractive() {
-        try (ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(testIntent)) {
+        try (ActivityScenario<CampusSelectionActivity> activityScenario = ActivityScenario.launch(testIntent)) {
             Espresso.onView(ViewMatchers.withId(R.id.recycler_view)).perform(
                     actionOnItemAtPosition(0, click()));
 
@@ -79,7 +79,7 @@ public class CampusSelectionActivityTest {
 
     @Test
     public void listIsSearchable() {
-        try (ActivityScenario<MainActivity> ignored = ActivityScenario.launch(testIntent)) {
+        try (ActivityScenario<CampusSelectionActivity> ignored = ActivityScenario.launch(testIntent)) {
             // Before search list is full
             Espresso.onView(ViewMatchers.withId(R.id.recycler_view)).check(
                     ViewAssertions.matches(ViewMatchers.hasChildCount(EXPECTED_CAMPUSES)));
