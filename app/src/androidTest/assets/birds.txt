@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<presentation xmlns="urn:SWENG" xmlns:SWENG="https://raw.githubusercontent.com/SWENG-G2/xml_standard/proposal-1/standard.xsd">
+  <info>
+    <title>York</title>
+    <author>admin</author>
+    <date>2023-05-11</date>
+    <numSlides>3</numSlides>
+  </info>
+  <slide width="1920" height="200" title="2">
+    <text fontName="mono" fontSize="22" colour="#000000FF" xCoordinate="560" yCoordinate="30" width="-4" height="-5">Barnacle Goose</text>
+    <text fontName="mono" fontSize="18" colour="#000000FF" xCoordinate="560" width="1300" height="-5" yCoordinate="68">Barnacle geese received their name through an old ...</text>
+    <image url="image/1/Barnacle goose Drawing.png" width="480" height="100" xCoordinate="40" yCoordinate="40"/>
+  </slide>
+  <slide width="1920" height="200" title="1">
+    <text fontName="mono" fontSize="22" colour="#000000FF" xCoordinate="560" yCoordinate="30" width="-4" height="-5">American Pekin</text>
+    <text fontName="mono" fontSize="18" colour="#000000FF" xCoordinate="560" width="1300" height="-5" yCoordinate="68">American Pekins are white fluffy ducks, originatin...</text>
+    <image url="image/1/American Pekin Drawing.png" width="480" height="100" xCoordinate="40" yCoordinate="40"/>
+  </slide>
+  <slide width="1920" height="200" title="3">
+    <text fontName="mono" fontSize="22" colour="#000000FF" xCoordinate="560" yCoordinate="30" width="-4" height="-5">Greylag Goose</text>
+    <text fontName="mono" fontSize="18" colour="#000000FF" xCoordinate="560" width="1300" height="-5" yCoordinate="68">The greylag goose is the largest breed of goose na...</text>
+    <image url="image/1/Greylag goose Drawing.png" width="480" height="100" xCoordinate="40" yCoordinate="40"/>
+  </slide>
+</presentation>
