@@ -1,3 +1,8 @@
 <resources>
+    <!-- Private -->
+    <string name="campusConfiguration" translatable="false">campusConfiguration</string>
+    <string name="campusId" translatable="false">campusId</string>
+    <string name="testingUrl" translatable="false">testingUrl</string>
+
     <string name="app_name">Fauna Finder</string>
 </resources>
