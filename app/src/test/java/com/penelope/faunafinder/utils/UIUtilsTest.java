@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.penelope.faunafinder.MainActivity;
+import com.penelope.faunafinder.R;
 import com.penelope.faunafinder.presentation.SlidesRecyclerViewAdapter;
 import com.penelope.faunafinder.utils.ListItemClickAction;
 import com.penelope.faunafinder.utils.ListItemClickListener;
@@ -84,7 +85,7 @@ public class UIUtilsTest {
         actionResults.add(0); // To be modified
         actionResults.add(1); // Expected
 
-        // Increments item at i index of actionResukts arrau
+        // Increments item at i index of actionResults array
         ListItemClickAction listItemClickAction = i -> {
             actionResults.set(i, actionResults.get(i) + 1);
         };

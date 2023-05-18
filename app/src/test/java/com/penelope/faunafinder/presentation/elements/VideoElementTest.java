@@ -19,6 +19,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.android.controller.ActivityController;
 
 import com.penelope.faunafinder.MainActivity;
+import com.penelope.faunafinder.R;
 import com.penelope.faunafinder.presentation.elements.VideoElement;
 import com.penelope.faunafinder.xml.slide.BasicSlide;
 

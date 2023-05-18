@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.test.core.app.ApplicationProvider;
 
 import com.penelope.faunafinder.MainActivity;
+import com.penelope.faunafinder.R;
 import com.penelope.faunafinder.xml.slide.DetailSlide;
 
 import org.junit.Before;

@@ -18,6 +18,7 @@ import com.penelope.faunafinder.network.Result;
 import com.penelope.faunafinder.presentation.SlidesRecyclerViewAdapter;
 import com.penelope.faunafinder.utils.ListItemClickAction;
 import com.penelope.faunafinder.utils.UIUtils;
+import com.penelope.faunafinder.xml.PresentationParser;
 import com.penelope.faunafinder.xml.slide.SlideFactory;
 
 
@@ -63,7 +64,8 @@ public class CampusSelectionActivity extends AppCompatActivity implements Search
                 };
                 slidesRecyclerViewAdapter =
                         UIUtils.populateList(string, campusSelectionActivity,
-                                SlideFactory.BASIC_SLIDE, listItemClickAction, 0);
+                                SlideFactory.BASIC_SLIDE, listItemClickAction, 0,
+                                new PresentationParser());
             }
 
             @Override

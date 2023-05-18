@@ -27,13 +27,13 @@ public class UIUtils {
      * @param slideType           The type of slide to use.
      * @param listItemClickAction Action to perform when item is clicked.
      * @param horizontalMargin    Horizontal margin for the slides.
+     * @param parser              The {@link PresentationParser} to use.
      * @return A fully set-up {@link SlidesRecyclerViewAdapter} or null on failure.
      */
     public static SlidesRecyclerViewAdapter populateList(String xml, View parent, String slideType,
                                                          ListItemClickAction listItemClickAction,
-                                                         int horizontalMargin) {
-        PresentationParser parser = new PresentationParser();
-
+                                                         int horizontalMargin,
+                                                         PresentationParser parser) {
         try {
             List<Slide> slides = parser.parse(xml, slideType);
 

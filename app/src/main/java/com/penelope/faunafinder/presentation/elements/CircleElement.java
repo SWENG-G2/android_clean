@@ -18,6 +18,8 @@ public class CircleElement extends PresentationElement implements ShapeElement {
     private final int colour;
     private final int borderWidth;
     private final int borderColour;
+    private Paint borderPaint;
+    private Paint fillPaint;
 
     /**
      * <code>CircleElement</code> constructor.
@@ -61,21 +63,22 @@ public class CircleElement extends PresentationElement implements ShapeElement {
             cy = dpToPx(y);
 
 
-        // Set up paint object
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        // Set up paint objects
+        borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         // Border
-        paint.setColor(borderColour);
-        paint.setStrokeWidth(border);
-        paint.setStyle(Paint.Style.STROKE);
+        borderPaint.setColor(borderColour);
+        borderPaint.setStrokeWidth(border);
+        borderPaint.setStyle(Paint.Style.STROKE);
 
-        canvas.drawCircle(cx, cy, calculatedRadius, paint);
+        canvas.drawCircle(cx, cy, calculatedRadius, borderPaint);
 
         // Circle
-        paint.setColor(colour);
-        paint.setStyle(Paint.Style.FILL);
+        fillPaint.setColor(colour);
+        fillPaint.setStyle(Paint.Style.FILL);
 
-        canvas.drawCircle(cx, cy, calculatedRadius, paint);
+        canvas.drawCircle(cx, cy, calculatedRadius, fillPaint);
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.penelope.faunafinder.network.RequestMaker;
 import com.penelope.faunafinder.network.Result;
 import com.penelope.faunafinder.utils.UIUtils;
+import com.penelope.faunafinder.xml.PresentationParser;
 import com.penelope.faunafinder.xml.slide.SlideFactory;
 
 import java.util.Locale;
@@ -32,7 +33,8 @@ public class BirdActivity extends AppCompatActivity {
     }
 
     private void populateUIAndContent(String contentXML) {
-        UIUtils.populateList(contentXML, birdActivity, SlideFactory.DETAIL_SLIDE, null, 0);
+        UIUtils.populateList(contentXML, birdActivity, SlideFactory.DETAIL_SLIDE,
+                null, 0, new PresentationParser());
         setUpAppBar();
     }
 

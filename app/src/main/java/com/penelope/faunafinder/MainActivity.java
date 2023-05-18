@@ -1,12 +1,5 @@
 package com.penelope.faunafinder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.android.volley.VolleyError;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.penelope.faunafinder.network.RequestMaker;
@@ -24,6 +24,7 @@ import com.penelope.faunafinder.network.Result;
 import com.penelope.faunafinder.presentation.SlidesRecyclerViewAdapter;
 import com.penelope.faunafinder.utils.ListItemClickAction;
 import com.penelope.faunafinder.utils.UIUtils;
+import com.penelope.faunafinder.xml.PresentationParser;
 import com.penelope.faunafinder.xml.slide.SlideFactory;
 
 import java.util.Locale;
@@ -57,7 +58,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     birdIntent.putExtra("birdId", id);
                     startActivity(birdIntent);
                 };
-                slidesRecyclerViewAdapter = UIUtils.populateList(response, mainActivity, SlideFactory.BIRD_SLIDE, listItemClickAction, 5);
+                slidesRecyclerViewAdapter = UIUtils.populateList(response, mainActivity,
+                        SlideFactory.BIRD_SLIDE, listItemClickAction, 5,
+                        new PresentationParser());
                 // Hide progress loading spinner
                 findViewById(R.id.loading).setVisibility(View.GONE);
             }

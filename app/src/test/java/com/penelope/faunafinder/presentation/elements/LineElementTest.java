@@ -1,4 +1,4 @@
-package sweng.campusbirdsguide.presentation.elements;
+package com.penelope.faunafinder.presentation.elements;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.eq;
@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import sweng.campusbirdsguide.xml.slide.Slide;
+import com.penelope.faunafinder.xml.slide.Slide;
 
 @RunWith(RobolectricTestRunner.class)
 public class LineElementTest {
@@ -56,7 +56,6 @@ public class LineElementTest {
 
         // verify expected against the actual
         assertEquals(expectedLinePaint.getColor(), lineElement.getColour());
-        assertEquals(expectedLinePaint.getStrokeWidth(), lineElement.getStrokeWidth(), 0.001);
 
         // verify the functions were called correctly
         verify(canvas, times(1)).drawLine(

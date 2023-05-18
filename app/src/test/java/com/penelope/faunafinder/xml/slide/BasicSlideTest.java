@@ -5,6 +5,8 @@ import static com.penelope.faunafinder.xml.slide.SlideConstants.SLIDE_TITLE;
 import static com.penelope.faunafinder.xml.slide.SlideConstants.SLIDE_TITLE_ID;
 import static com.penelope.faunafinder.xml.slide.SlideConstants.SLIDE_WIDTH;
 
+import static org.junit.Assert.assertEquals;
+
 import com.penelope.faunafinder.xml.slide.BasicSlide;
 
 import org.junit.Test;

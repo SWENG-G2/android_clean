@@ -46,7 +46,13 @@ public abstract class ElementParser {
         if (colour != null && colour.length() == EXPECTED_COLOUR_STRING_LENGTH) {
             String formattedColour = "#" + colour.substring(ALPHA_START_STRING_INDEX)
                     + colour.substring(RGB_START_STRING_INDEX, ALPHA_START_STRING_INDEX);
-            return Color.parseColor(formattedColour);
+            try {
+                return Color.parseColor(formattedColour);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+
+                return Color.TRANSPARENT;
+            }
         }
         return Color.TRANSPARENT;
     }

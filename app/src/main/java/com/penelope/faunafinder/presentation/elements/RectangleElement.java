@@ -20,6 +20,8 @@ public class RectangleElement extends PresentationElement implements ShapeElemen
     private final int colour;
     private final int borderWidth;
     private final int borderColour;
+    private Paint borderPaint;
+    private Paint fillPaint;
 
     /**
      * <code>RectangleElement</code> constructor.
@@ -52,20 +54,23 @@ public class RectangleElement extends PresentationElement implements ShapeElemen
         int bottom = top + dpToPx(height);
         int border = dpToPx(borderWidth);
 
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(borderColour);
-        paint.setStrokeWidth(border);
-        paint.setStyle(Paint.Style.STROKE);
+        // Set up paint objects
+        borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        borderPaint.setColor(borderColour);
+        borderPaint.setStrokeWidth(border);
+        borderPaint.setStyle(Paint.Style.STROKE);
 
         // Border
         Rect rectangle = new Rect(left, top, right, bottom);
-        canvas.drawRect(rectangle, paint);
+        canvas.drawRect(rectangle, borderPaint);
 
-        paint.setColor(colour);
-        paint.setStyle(Paint.Style.FILL);
+        fillPaint.setColor(colour);
+        fillPaint.setStyle(Paint.Style.FILL);
 
         // Rectangle
-        canvas.drawRect(rectangle, paint);
+        canvas.drawRect(rectangle, fillPaint);
     }
 
     @Override

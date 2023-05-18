@@ -5,6 +5,8 @@ import static com.penelope.faunafinder.xml.slide.SlideConstants.SLIDE_HEIGHT;
 import static com.penelope.faunafinder.xml.slide.SlideConstants.SLIDE_TITLE;
 import static com.penelope.faunafinder.xml.slide.SlideConstants.SLIDE_WIDTH;
 
+import static org.junit.Assert.assertEquals;
+
 import android.content.Context;
 import android.widget.RelativeLayout;
 
@@ -12,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.test.core.app.ApplicationProvider;
 
 import com.penelope.faunafinder.MainActivity;
+import com.penelope.faunafinder.R;
 import com.penelope.faunafinder.xml.slide.BirdSlide;
 
 import org.junit.Before;

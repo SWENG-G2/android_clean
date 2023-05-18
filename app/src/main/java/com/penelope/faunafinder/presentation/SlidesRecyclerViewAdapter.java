@@ -19,10 +19,13 @@ import com.penelope.faunafinder.xml.slide.Slide;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+
 /**
  * <code>SlidesRecyclerViewAdapter</code> is the {@link RecyclerView.Adapter} to be used when
  * displaying slides in a list.
  */
+@Getter
 public class SlidesRecyclerViewAdapter extends RecyclerView.Adapter<SlideViewHolder> implements Filterable {
     private final List<Slide> initialSlides;
     private final ListItemClickListener listItemClickListener;
