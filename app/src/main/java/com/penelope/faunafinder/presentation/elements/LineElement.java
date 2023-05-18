@@ -20,17 +20,21 @@ public class LineElement extends PresentationElement implements ShapeElement {
     private final int toX;
     private final int toY;
     private final int colour;
+    private final long timeOnScreen;
 
     /**
      * <code>LineElement</code> constructor.
-     * @param thickness Line thickness in DP.
-     * @param fromX Point 1 X in slide coordinates.
-     * @param fromY Point 1 Y in slide coordinates.
-     * @param toX Point 2 X in slide coordinates.
-     * @param toY Point 2 X in slide coordinate.
-     * @param colour Line colour.
+     *
+     * @param thickness    Line thickness in DP.
+     * @param fromX        Point 1 X in slide coordinates.
+     * @param fromY        Point 1 Y in slide coordinates.
+     * @param toX          Point 2 X in slide coordinates.
+     * @param toY          Point 2 X in slide coordinate.
+     * @param colour       Line colour.
+     * @param timeOnScreen The shape's time on screen, in milliseconds.
      */
-    public LineElement(int thickness, int fromX, int fromY, int toX, int toY, int colour) {
+    public LineElement(int thickness, int fromX, int fromY, int toX, int toY, int colour,
+                       long timeOnScreen) {
         // Line doesn't have x and y
         super(0, 0);
 
@@ -40,6 +44,7 @@ public class LineElement extends PresentationElement implements ShapeElement {
         this.toX = toX;
         this.toY = toY;
         this.colour = colour;
+        this.timeOnScreen = timeOnScreen;
     }
 
     @Override

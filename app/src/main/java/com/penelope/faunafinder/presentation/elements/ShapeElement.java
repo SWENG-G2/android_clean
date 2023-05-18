@@ -17,4 +17,6 @@ public interface ShapeElement {
      * @param slide  The slide where the element is stored.
      */
     void draw(Canvas canvas, Slide slide);
+
+    long getTimeOnScreen();
 }

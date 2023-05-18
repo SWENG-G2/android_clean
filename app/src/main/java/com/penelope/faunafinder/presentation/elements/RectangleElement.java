@@ -20,6 +20,7 @@ public class RectangleElement extends PresentationElement implements ShapeElemen
     private final int colour;
     private final int borderWidth;
     private final int borderColour;
+    private final long timeOnScreen;
     private Paint borderPaint;
     private Paint fillPaint;
 
@@ -33,20 +34,21 @@ public class RectangleElement extends PresentationElement implements ShapeElemen
      * @param borderColour Border Colour
      * @param x            X coordinate on slide.
      * @param y            Y coordinate on slide.
+     * @param timeOnScreen The shape's time on screen, in milliseconds.
      */
     public RectangleElement(int width, int height, int colour, int borderWidth,
-                            int borderColour, int x, int y) {
+                            int borderColour, int x, int y, long timeOnScreen) {
         super(x, y);
         this.width = width;
         this.height = height;
         this.colour = colour;
         this.borderWidth = borderWidth;
         this.borderColour = borderColour;
+        this.timeOnScreen = timeOnScreen;
     }
 
     @Override
     public void draw(Canvas canvas, Slide slide) {
-        // Map coordinates
         int left = Math.round((x * slide.getCalculatedWidth()) / (float) slide.getWidth());
         int right =
                 Math.round(left + (width * slide.getCalculatedWidth()) / (float) slide.getWidth());

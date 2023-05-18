@@ -39,6 +39,7 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
     private final ArrayList<Integer> imageElementIds;
     private final ArrayList<Integer> textElementIds;
     private final ArrayList<Integer> videoElementIds;
+    private final ArrayList<ShapeElement> shapes;
 
     private static final int AUDIO_BASE_ID = 3000;
     private static final int IMAGE_BASE_ID = 4000;
@@ -71,6 +72,7 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
         this.imageElementIds = new ArrayList<>();
         this.textElementIds = new ArrayList<>();
         this.videoElementIds = new ArrayList<>();
+        this.shapes = new ArrayList<>();
     }
 
     /**
@@ -250,6 +252,24 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
+     * Sets up invalidation callbacks for the CanvasView to remove expired shapes.
+     * @param canvasView The CanvasView in use.
+     */
+    private void setUpInvalidate(CanvasView canvasView) {
+        for (ShapeElement element : shapes) {
+            long timeOnScreen = element.getTimeOnScreen();
+            if (timeOnScreen > -1) {
+                // Redraw canvas with updated shapes after shape's time on screen
+                canvasView.postDelayed(() -> {
+                    shapes.remove(element);
+                    canvasView.setShapes(shapes);
+                    canvasView.invalidate();
+                }, timeOnScreen);
+            }
+        }
+    }
+
+    /**
      * Lays views and draws shape withing the slide.
      *
      * @param slide The slide to draw.
@@ -261,7 +281,6 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
 
         setLayoutParameters(slide);
 
-        ArrayList<ShapeElement> shapes = new ArrayList<>();
         iterateObjects(slide, shapes);
 
         // Different slide types need different specific operations
@@ -293,6 +312,8 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
 
                         // Bring canvas to bottom, other views should be on top
                         canvas.setZ(-1);
+
+                        setUpInvalidate(canvas);
 
                         relativeLayout.getViewTreeObserver()
                                 .removeOnGlobalLayoutListener(this);

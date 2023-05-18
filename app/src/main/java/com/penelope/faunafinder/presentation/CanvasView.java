@@ -18,7 +18,6 @@ import lombok.Setter;
  * <code>CanvasView</code> is a simple view used as canvas in presentations.
  */
 public class CanvasView extends View {
-
     @Setter
     private Slide slide = null;
     @Setter

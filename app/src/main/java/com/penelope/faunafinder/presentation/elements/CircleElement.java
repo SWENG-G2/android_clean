@@ -18,6 +18,7 @@ public class CircleElement extends PresentationElement implements ShapeElement {
     private final int colour;
     private final int borderWidth;
     private final int borderColour;
+    private final long timeOnScreen;
     private Paint borderPaint;
     private Paint fillPaint;
 
@@ -30,13 +31,16 @@ public class CircleElement extends PresentationElement implements ShapeElement {
      * @param borderColour Border colour.
      * @param x            X coordinate on slide.
      * @param y            Y coordinate on slide.
+     * @param timeOnScreen The shape's time on screen, in milliseconds.
      */
-    public CircleElement(int radius, int colour, int borderWidth, int borderColour, int x, int y) {
+    public CircleElement(int radius, int colour, int borderWidth, int borderColour, int x, int y,
+                         long timeOnScreen) {
         super(x, y);
         this.radius = radius;
         this.colour = colour;
         this.borderWidth = borderWidth;
         this.borderColour = borderColour;
+        this.timeOnScreen = timeOnScreen;
     }
 
     @Override

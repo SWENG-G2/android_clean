@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         requestMaker.query(birdsUrl, new Result() {
             @Override
             public void onSuccess(String response) {
-                System.out.println(response);
                 ListItemClickAction listItemClickAction = id -> {
                     Intent birdIntent = new Intent(getApplicationContext(), BirdActivity.class);
                     birdIntent.putExtra("birdId", id);

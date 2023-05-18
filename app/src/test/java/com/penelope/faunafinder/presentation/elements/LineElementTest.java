@@ -28,12 +28,13 @@ public class LineElementTest {
     private static final int TO_X = 10;
     private static final int TO_Y = 30;
     private static final int COLOUR = Color.RED;
+    private static final long TIME_ON_SCREEN = -1;
 
     @Test
     @Config(qualifiers = "mdpi")
     public void drawIsCorrect() {
         // create line element
-        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR);
+        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR, TIME_ON_SCREEN);
 
         // mock canvas and slide objects
         Canvas canvas = mock(Canvas.class);
@@ -68,14 +69,14 @@ public class LineElementTest {
 
     @Test
     public void getViewTypeIsCorrect() {
-        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR);
+        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR, TIME_ON_SCREEN);
 
         assertNull(lineElement.getViewType());
     }
 
     @Test
     public void getSearchableContentIsCorrect() {
-        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR);
+        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR, TIME_ON_SCREEN);
 
         assertNull(lineElement.getSearchableContent());
     }

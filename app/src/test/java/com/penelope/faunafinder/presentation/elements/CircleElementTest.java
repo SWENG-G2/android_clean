@@ -28,12 +28,13 @@ public class CircleElementTest {
     private static final int BORDER_COLOUR = Color.BLACK;
     private static final int X = 20;
     private static final int Y = 30;
+    private static final long TIME_ON_SCREEN = -1;
 
     @Test
     @Config(qualifiers = "mdpi")
     public void drawIsCorrect() {
         // create circle element
-        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y);
+        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
 
         // mock canvas and slide objects
         Canvas canvas = mock(Canvas.class);
@@ -78,14 +79,14 @@ public class CircleElementTest {
 
     @Test
     public void getViewTypeIsCorrect() {
-        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y);
+        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
 
         assertNull(circleElement.getViewType());
     }
 
     @Test
     public void getSearchableContentIsCorrect() {
-        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y);
+        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
 
         assertNull(circleElement.getSearchableContent());
     }
