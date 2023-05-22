@@ -44,8 +44,8 @@ public class AudioElementTest {
     @Before
     public void setUp() {
         // set up MainActivity instance
-        ActivityController<MainActivity> birdActivityActivityController = Robolectric.buildActivity(MainActivity.class).setup();
-        birdActivity = birdActivityActivityController.get();
+        ActivityController<MainActivity> mainActivityActivityController = Robolectric.buildActivity(MainActivity.class).setup();
+        birdActivity = mainActivityActivityController.get();
 
         // set up AudioElement instance
         audioElement = new AudioElement(mediaPlayer, "TestLink.url", true, X_COORDINATE, Y_COORDINATE);
