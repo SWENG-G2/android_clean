@@ -37,7 +37,7 @@ public class AudioElementTest {
 
     private AudioElement audioElement;
 
-    private MainActivity birdActivity;
+    private MainActivity mainActivity;
 
     private MediaPlayer mediaPlayer = new MediaPlayer();
 
@@ -45,7 +45,7 @@ public class AudioElementTest {
     public void setUp() {
         // set up MainActivity instance
         ActivityController<MainActivity> mainActivityActivityController = Robolectric.buildActivity(MainActivity.class).setup();
-        birdActivity = mainActivityActivityController.get();
+        mainActivity = mainActivityActivityController.get();
 
         // set up AudioElement instance
         audioElement = new AudioElement(mediaPlayer, "TestLink.url", true, X_COORDINATE, Y_COORDINATE);
@@ -54,8 +54,8 @@ public class AudioElementTest {
     @Test
     public void applyViewIsCorrect() {
         // create RelativeLayout and add to main layout
-        RelativeLayout relativeLayout = new RelativeLayout(birdActivity);
-        ConstraintLayout constraintLayout = birdActivity.findViewById(R.id.main_activity);
+        RelativeLayout relativeLayout = new RelativeLayout(mainActivity);
+        ConstraintLayout constraintLayout = mainActivity.findViewById(R.id.main_activity);
         constraintLayout.addView(relativeLayout);
 
         Slide testSlide = new BasicSlide(SLIDE_WIDTH, SLIDE_HEIGHT, SLIDE_TITLE);
