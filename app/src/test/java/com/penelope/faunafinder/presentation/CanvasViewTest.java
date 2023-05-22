@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.penelope.faunafinder.MainActivity;
+import com.penelope.faunafinder.R;
 import com.penelope.faunafinder.presentation.CanvasView;
 import com.penelope.faunafinder.presentation.elements.ShapeElement;
 import com.penelope.faunafinder.xml.slide.BasicSlide;

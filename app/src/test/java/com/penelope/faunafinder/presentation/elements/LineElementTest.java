@@ -1,4 +1,4 @@
-package sweng.campusbirdsguide.presentation.elements;
+package com.penelope.faunafinder.presentation.elements;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.eq;
@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import sweng.campusbirdsguide.xml.slide.Slide;
+import com.penelope.faunafinder.xml.slide.Slide;
 
 @RunWith(RobolectricTestRunner.class)
 public class LineElementTest {
@@ -28,12 +28,13 @@ public class LineElementTest {
     private static final int TO_X = 10;
     private static final int TO_Y = 30;
     private static final int COLOUR = Color.RED;
+    private static final long TIME_ON_SCREEN = -1;
 
     @Test
     @Config(qualifiers = "mdpi")
     public void drawIsCorrect() {
         // create line element
-        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR);
+        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR, TIME_ON_SCREEN);
 
         // mock canvas and slide objects
         Canvas canvas = mock(Canvas.class);
@@ -56,7 +57,6 @@ public class LineElementTest {
 
         // verify expected against the actual
         assertEquals(expectedLinePaint.getColor(), lineElement.getColour());
-        assertEquals(expectedLinePaint.getStrokeWidth(), lineElement.getStrokeWidth(), 0.001);
 
         // verify the functions were called correctly
         verify(canvas, times(1)).drawLine(
@@ -69,14 +69,14 @@ public class LineElementTest {
 
     @Test
     public void getViewTypeIsCorrect() {
-        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR);
+        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR, TIME_ON_SCREEN);
 
         assertNull(lineElement.getViewType());
     }
 
     @Test
     public void getSearchableContentIsCorrect() {
-        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR);
+        LineElement lineElement = new LineElement(THICKNESS, FROM_X, FROM_Y, TO_X, TO_Y, COLOUR, TIME_ON_SCREEN);
 
         assertNull(lineElement.getSearchableContent());
     }

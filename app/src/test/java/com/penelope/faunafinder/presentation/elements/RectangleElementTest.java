@@ -1,4 +1,4 @@
-package sweng.campusbirdsguide.presentation.elements;
+package com.penelope.faunafinder.presentation.elements;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.eq;
@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import sweng.campusbirdsguide.xml.slide.Slide;
+import com.penelope.faunafinder.xml.slide.Slide;
 
 @RunWith(RobolectricTestRunner.class)
 public class RectangleElementTest {
@@ -30,12 +30,13 @@ public class RectangleElementTest {
     private static final int BORDER_COLOUR = Color.RED;
     private static final int X = 10;
     private static final int Y = 20;
+    private static final long TIME_ON_SCREEN = -1;
 
     @Test
     @Config(qualifiers = "mdpi")
     public void drawIsCorrect() {
         // Create rectangle element
-        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y);
+        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
 
         // Mock canvas and slide objects
         Canvas canvas = mock(Canvas.class);
@@ -78,14 +79,14 @@ public class RectangleElementTest {
 
     @Test
     public void getViewTypeIsCorrect() {
-        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y);
+        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
 
         assertNull(rectangleElement.getViewType());
     }
 
     @Test
     public void getSearchableContentIsCorrect() {
-        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y);
+        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
 
         assertNull(rectangleElement.getSearchableContent());
     }
