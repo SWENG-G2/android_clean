@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<presentation xmlns="urn:SWENG" xmlns:SWENG="https://raw.githubusercontent.com/SWENG-G2/xml_standard/proposal-1/standard.xsd">
+  <info>
+    <title>Campuses list</title>
+    <author>The Penelope Team</author>
+    <date>2023-05-12</date>
+    <numSlides>4</numSlides>
+  </info>
+  <slide width="1920" height="120" title="1">
+    <text fontName="mono" fontSize="32" colour="#000000FF" xCoordinate="100" yCoordinate="45" width="-4" height="-5">York</text>
+    <line thickness="5" fromX="100" fromY="120" toX="1820" toY="120" colour="#8A8178FF"/>
+  </slide>
+  <slide width="1920" height="120" title="2">
+    <text fontName="mono" fontSize="32" colour="#000000FF" xCoordinate="100" yCoordinate="45" width="-4" height="-5">Lancaster</text>
+    <line thickness="5" fromX="100" fromY="120" toX="1820" toY="120" colour="#8A8178FF"/>
+  </slide>
+  <slide width="1920" height="120" title="9">
+    <text fontName="mono" fontSize="32" colour="#000000FF" xCoordinate="100" yCoordinate="45" width="-4" height="-5">York St John</text>
+    <line thickness="5" fromX="100" fromY="120" toX="1820" toY="120" colour="#8A8178FF"/>
+  </slide>
+  <slide width="1920" height="120" title="10">
+    <text fontName="mono" fontSize="32" colour="#000000FF" xCoordinate="100" yCoordinate="45" width="-4" height="-5">UCL</text>
+    <line thickness="5" fromX="100" fromY="120" toX="1820" toY="120" colour="#8A8178FF"/>
+  </slide>
+</presentation>
