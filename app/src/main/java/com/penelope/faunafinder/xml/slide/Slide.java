@@ -15,6 +15,7 @@ public interface Slide {
     int HORIZONTAL_PADDING = 20; // 10 dp each side
     int STANDARD_TYPE = 0;
     int EXPANDABLE_TYPE = 1;
+    int WRAP_CONTENT_CLIENT_SIDE = -1;
 
     // Getters
     int getWidth();

@@ -2,6 +2,8 @@ package com.penelope.faunafinder.presentation;
 
 
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
     private final ArrayList<Integer> textElementIds;
     private final ArrayList<Integer> videoElementIds;
     private final ArrayList<ShapeElement> shapes;
+    private final DisplayMetrics displayMetrics;
 
     private static final int AUDIO_BASE_ID = 3000;
     private static final int IMAGE_BASE_ID = 4000;
@@ -63,6 +66,8 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
         this.container = container;
         this.listItemClickListener = listItemClickListener;
 
+        this.displayMetrics = Resources.getSystem().getDisplayMetrics();
+
         this.relativeLayout = itemView.findViewById(R.id.slide);
         this.horizontalMargin =
                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, horizontalMargin,
@@ -83,16 +88,24 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
     private void setLayoutParameters(Slide slide) {
         int slideType = slide.getType();
         int calculatedHeight = slide.getCalculatedHeight();
+        int height = slide.getHeight();
         if (slideType == Slide.STANDARD_TYPE) {
             RecyclerView.LayoutParams layoutParams =
                     (RecyclerView.LayoutParams) itemView.getLayoutParams();
             layoutParams.width = slide.getCalculatedWidth();
 
-            // If not, server requested wrap content
-            if (calculatedHeight > 0)
-                layoutParams.height = calculatedHeight;
-            else
+            // Check for wrap content
+            if (height == Slide.WRAP_CONTENT_CLIENT_SIDE)
                 layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT;
+            else if (height < 0) { // Check for padding
+                layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT;
+                int padding = Math.round(
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, Math.abs(height),
+                                displayMetrics));
+                relativeLayout.setPadding(padding, padding, padding, padding);
+            } else
+                layoutParams.height = calculatedHeight;
+
             layoutParams.setMarginStart(horizontalMargin);
 
             itemView.setLayoutParams(layoutParams);
@@ -101,11 +114,17 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
                     (ConstraintLayout.LayoutParams) relativeLayout.getLayoutParams();
             layoutParams.width = slide.getCalculatedWidth();
 
-            // If not, server requested wrap content
-            if (calculatedHeight > 0)
+            // Check for wrap content
+            if (height == Slide.WRAP_CONTENT_CLIENT_SIDE)
+                layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT;
+            else if (height < 0) { // Check for padding
+                layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT;
+                int padding = Math.round(
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, Math.abs(height),
+                                displayMetrics));
+                relativeLayout.setPadding(padding, padding, padding, padding);
+            } else
                 layoutParams.height = calculatedHeight;
-            else
-                layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
 
             relativeLayout.setLayoutParams(layoutParams);
 
@@ -253,6 +272,7 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
 
     /**
      * Sets up invalidation callbacks for the CanvasView to remove expired shapes.
+     *
      * @param canvasView The CanvasView in use.
      */
     private void setUpInvalidate(CanvasView canvasView) {
