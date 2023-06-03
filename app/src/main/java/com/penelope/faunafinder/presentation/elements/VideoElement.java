@@ -71,9 +71,7 @@ public class VideoElement extends PresentationElement implements ViewElement {
 
         styledPlayerView.setLayoutParams(layoutParams);
 
-
-        String serverURL = parent.getContext().getResources().getString(R.string.serverURL);
-        Uri videoURI = Uri.parse(serverURL + url);
+        Uri videoURI = Uri.parse(url);
         MediaItem video = MediaItem.fromUri(videoURI);
 
         exoPlayer.addMediaItem(video);

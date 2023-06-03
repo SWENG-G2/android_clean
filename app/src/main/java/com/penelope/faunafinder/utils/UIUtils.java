@@ -1,7 +1,9 @@
 package com.penelope.faunafinder.utils;
 
 import android.view.View;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,6 +55,11 @@ public class UIUtils {
             RecyclerView recyclerView = parent.findViewById(R.id.recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(parent.getContext()));
             recyclerView.setAdapter(slidesRecyclerViewAdapter);
+            recyclerView.setVisibility(View.VISIBLE);
+
+            TextView networkProblemTv = parent.findViewById(R.id.network_problem);
+            if (networkProblemTv != null)
+                networkProblemTv.setVisibility(View.GONE);
 
             return slidesRecyclerViewAdapter;
         } catch (XmlPullParserException | IOException e) {
@@ -60,5 +67,20 @@ public class UIUtils {
         }
 
         return null;
+    }
+
+    public static AlertDialog networkProblem(View parent, AlertDialog.Builder builder) {
+        builder.setTitle(R.string.error);
+        builder.setMessage(R.string.network_problem);
+        builder.setPositiveButton(android.R.string.ok, null);
+
+        RecyclerView recyclerView = parent.findViewById(R.id.recycler_view);
+        recyclerView.setVisibility(View.GONE);
+
+        TextView networkProblemTv = parent.findViewById(R.id.network_problem);
+        if (networkProblemTv != null)
+            networkProblemTv.setVisibility(View.VISIBLE);
+
+        return builder.create();
     }
 }

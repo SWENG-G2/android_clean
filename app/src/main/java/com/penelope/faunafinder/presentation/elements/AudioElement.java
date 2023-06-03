@@ -28,7 +28,7 @@ public class AudioElement extends PresentationElement implements View.OnClickLis
     private static final int DP_SIZE = 100;
     private final String url;
     private final boolean loop;
-    private MediaPlayer mediaPlayer;
+    private final MediaPlayer mediaPlayer;
 
     /**
      * <code>AudioElement</code> constructor.
@@ -38,10 +38,14 @@ public class AudioElement extends PresentationElement implements View.OnClickLis
      * @param x    X coordinate on slide.
      * @param y    Y coordinate on slide.
      */
-    public AudioElement(String url, boolean loop, int x, int y) {
+    public AudioElement(MediaPlayer mediaPlayer, String url, boolean loop, int x, int y) {
         super(x, y);
         this.url = url;
         this.loop = loop;
+        if (mediaPlayer != null)
+            this.mediaPlayer = mediaPlayer;
+        else
+            this.mediaPlayer = new MediaPlayer();
     }
 
     @Override
@@ -107,20 +111,15 @@ public class AudioElement extends PresentationElement implements View.OnClickLis
      * @param container {@link ViewGroup} containing the view.
      */
     private void setUpMediaPlayer(ViewGroup container) {
-        // Create media player
-        mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioAttributes(
                 new AudioAttributes.Builder()
                         .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                         .setUsage(AudioAttributes.USAGE_MEDIA).build());
 
-        // TODO: remove this as server should provide full url
-        String serverURL = container.getContext().getString(R.string.serverURL);
-
         // Prepare media player in the background
         Runnable runnable = () -> {
             try {
-                mediaPlayer.setDataSource(serverURL + url);
+                mediaPlayer.setDataSource(url);
                 mediaPlayer.prepare();
 
                 if (loop)

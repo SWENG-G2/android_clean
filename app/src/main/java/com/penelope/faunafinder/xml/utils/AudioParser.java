@@ -21,6 +21,6 @@ public class AudioParser extends ElementParser {
         boolean loop = Boolean.parseBoolean(xmlPullParser.getAttributeValue(NAME_SPACE, LOOP));
 
 
-        return new AudioElement(url, loop, xCoordinate, yCoordinate);
+        return new AudioElement(null, url, loop, xCoordinate, yCoordinate);
     }
 }

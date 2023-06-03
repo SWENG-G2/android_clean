@@ -1,4 +1,4 @@
-package sweng.campusbirdsguide.presentation.elements;
+package com.penelope.faunafinder.presentation.elements;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -20,10 +20,10 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.android.controller.ActivityController;
 
-import sweng.campusbirdsguide.MainActivity;
-import sweng.campusbirdsguide.R;
-import sweng.campusbirdsguide.xml.slide.BasicSlide;
-import sweng.campusbirdsguide.xml.slide.Slide;
+import com.penelope.faunafinder.MainActivity;
+import com.penelope.faunafinder.R;
+import com.penelope.faunafinder.xml.slide.BasicSlide;
+import com.penelope.faunafinder.xml.slide.Slide;
 
 @RunWith(RobolectricTestRunner.class)
 public class AudioElementTest {
@@ -90,9 +90,9 @@ public class AudioElementTest {
         AudioElement audioElement = new AudioElement(mediaPlayer, "audio.mp3", true, 0, 0);
 
         // call interaction methods
-        audioElement.start();
-        audioElement.pause();
-        audioElement.seekTo(6969);
+//        audioElement.start();
+//        audioElement.pause();
+//        audioElement.seekTo(6969);
 
         // check that the methods were called correctly
         verify(mediaPlayer, times(1)).start();

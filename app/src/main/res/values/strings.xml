@@ -2,7 +2,7 @@
     <!-- Private -->
     <string name="campusConfiguration" translatable="false">campusConfiguration</string>
     <string name="campusId" translatable="false">campusId</string>
-    <string name="serverURL" translatable="false">http://192.168.0.87:8080/</string>
+    <string name="serverURL" translatable="false">https://penelope.barillari.me:8080/</string>
     <string name="campusesList" translatable="false">campus/list</string>
     <string name="birdsList" translatable="false">campus/%d</string>
     <string name="testingUrl" translatable="false">testingUrl</string>
@@ -23,4 +23,9 @@
     <!-- Bird detail -->
     <string name="expand_section">Expand section</string>
     <string name="play_pause">Play/Pause Button</string>
+
+    <!-- Common -->
+    <string name="refresh">Refresh</string>
+    <string name="error">Error</string>
+    <string name="network_problem">Something went wrong reaching the server. Please try again.</string>
 </resources>
