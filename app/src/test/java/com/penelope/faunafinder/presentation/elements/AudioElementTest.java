@@ -35,20 +35,13 @@ public class AudioElementTest {
 
     private static final int Y_COORDINATE = 200;
 
-    private AudioElement audioElement;
-
     private MainActivity mainActivity;
-
-    private MediaPlayer mediaPlayer = new MediaPlayer();
 
     @Before
     public void setUp() {
         // set up MainActivity instance
         ActivityController<MainActivity> mainActivityActivityController = Robolectric.buildActivity(MainActivity.class).setup();
         mainActivity = mainActivityActivityController.get();
-
-        // set up AudioElement instance
-        audioElement = new AudioElement(mediaPlayer, "TestLink.url", true, X_COORDINATE, Y_COORDINATE);
     }
 
     @Test
@@ -66,6 +59,7 @@ public class AudioElementTest {
         imageButton.setId(3000);
 
         // call the method under test and get the returned View
+        AudioElement audioElement = new AudioElement(null, "TestLink.url", true, X_COORDINATE, Y_COORDINATE);
         View button = audioElement.applyView(relativeLayout, (ViewGroup) relativeLayout.getParent(), testSlide, 3000);
 
         // check for null and correct View
@@ -86,22 +80,31 @@ public class AudioElementTest {
         // mock MediaPlayer
         MediaPlayer mediaPlayer = mock(MediaPlayer.class);
 
+        // create RelativeLayout and add to main layout
+        RelativeLayout relativeLayout = new RelativeLayout(mainActivity);
+        ConstraintLayout constraintLayout = mainActivity.findViewById(R.id.main_activity);
+        constraintLayout.addView(relativeLayout);
+
+        Slide testSlide = new BasicSlide(SLIDE_WIDTH, SLIDE_HEIGHT, SLIDE_TITLE);
+
+        // create ImageButton and add to RelativeLayout
+        ImageButton imageButton = new ImageButton(relativeLayout.getContext());
+        relativeLayout.addView(imageButton);
+        imageButton.setId(3000);
+
         // create AudioElement object with the mock
         AudioElement audioElement = new AudioElement(mediaPlayer, "audio.mp3", true, 0, 0);
+        View button = audioElement.applyView(relativeLayout, (ViewGroup) relativeLayout.getParent(), testSlide, 3000);
 
-        // call interaction methods
-//        audioElement.start();
-//        audioElement.pause();
-//        audioElement.seekTo(6969);
+        button.performClick();
 
         // check that the methods were called correctly
         verify(mediaPlayer, times(1)).start();
-        verify(mediaPlayer, times(1)).pause();
-        verify(mediaPlayer, times(1)).seekTo(6969);
     }
 
     @Test
     public void getViewTypeIsCorrect() {
+        AudioElement audioElement = new AudioElement(null, "audio.mp3", true, 0, 0);
         assertEquals("audio", audioElement.getViewType());
     }
 
