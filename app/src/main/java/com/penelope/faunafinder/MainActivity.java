@@ -8,14 +8,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.VolleyError;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,11 +40,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private SlidesRecyclerViewAdapter slidesRecyclerViewAdapter;
     private MainActivityLifecycleObserver mainActivityLifecycleObserver;
     private String testingUrl = null;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private AlertDialog.Builder alertBuilder;
 
     /**
      * Fetches the birds for the selected campus.
      */
-    private void fetchBirds() {
+    private void fetchBirds(AlertDialog.Builder alertBuilder) {
         RequestMaker requestMaker = new RequestMaker(getApplicationContext());
 
         String birdsUrl = testingUrl != null ? testingUrl :
@@ -60,13 +63,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 slidesRecyclerViewAdapter = UIUtils.populateList(response, mainActivity,
                         SlideFactory.BIRD_SLIDE, listItemClickAction, 5,
                         new PresentationParser());
-                // Hide progress loading spinner
-                findViewById(R.id.loading).setVisibility(View.GONE);
+
+                // Stop refresh animation
+                if (swipeRefreshLayout != null)
+                    swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onError(VolleyError volleyError) {
-                System.out.println(volleyError.getMessage());
+                UIUtils.networkProblem(mainActivity, alertBuilder).show();
+                volleyError.printStackTrace();
+
+                // Stop refresh animation
+                if (swipeRefreshLayout != null)
+                    swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
@@ -89,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         FloatingActionButton floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(this);
 
+        // Initialise dialogue builder
+        alertBuilder = new AlertDialog.Builder(this);
+
         // Set app bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -104,18 +117,25 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         sharedPreferences = getSharedPreferences(getString(R.string.campusConfiguration), Context.MODE_PRIVATE);
         campusId = sharedPreferences.getInt(getString(R.string.campusId), NO_CAMPUS_SELECTED);
 
-        if (campusId != NO_CAMPUS_SELECTED) {
-            // Show loading spinner
-            findViewById(R.id.loading).setVisibility(View.VISIBLE);
-            fetchBirds();
-        }
-        // Show select location hint
-        else findViewById(R.id.select_location_tv).setVisibility(View.VISIBLE);
-
         // Search functionality
         SearchView searchView = findViewById(R.id.search);
         searchView.setOnQueryTextListener(this);
         searchView.setOnClickListener(v -> searchView.setIconified(false));
+
+        // Set refresh listener
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            if (campusId != NO_CAMPUS_SELECTED) {
+                fetchBirds(alertBuilder);
+            } else
+                swipeRefreshLayout.setRefreshing(false);
+        });
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.bordeaux));
+
+        if (campusId == NO_CAMPUS_SELECTED) {
+            // Show select location hint
+            findViewById(R.id.select_location_tv).setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -124,11 +144,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         int newCampusId = sharedPreferences.getInt(getString(R.string.campusId), NO_CAMPUS_SELECTED);
         if (newCampusId != campusId) {
             campusId = newCampusId;
+        }
+
+        if (campusId != NO_CAMPUS_SELECTED) {
             // Hide select location hint
             findViewById(R.id.select_location_tv).setVisibility(View.GONE);
             // Show loading spinner
-            findViewById(R.id.loading).setVisibility(View.VISIBLE);
-            fetchBirds();
+            if (swipeRefreshLayout != null)
+                swipeRefreshLayout.setRefreshing(true);
+            fetchBirds(alertBuilder);
         }
     }
 
@@ -142,12 +166,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
             Intent chooseLocationIntent = new Intent(this, CampusSelectionActivity.class);
             startActivity(chooseLocationIntent);
-        } else { // Other possibility can only be the about button
-            Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+        } else if (itemId == R.id.action_about) { // About button
+            Intent chooseLocationIntent = new Intent(this, AboutUsActivity.class);
+            startActivity(chooseLocationIntent);
+        } else if (campusId != NO_CAMPUS_SELECTED) { // Other possibility is only refresh
+            if (swipeRefreshLayout != null) {
+                swipeRefreshLayout.setRefreshing(true);
+            }
+            fetchBirds(alertBuilder);
         }
+
         return super.onOptionsItemSelected(item);
     }
 
