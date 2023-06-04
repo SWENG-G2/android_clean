@@ -58,6 +58,7 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation 'com.github.AppIntro:AppIntro:6.2.0'
 }
 
 apply plugin: "io.freefair.android-javadoc"
