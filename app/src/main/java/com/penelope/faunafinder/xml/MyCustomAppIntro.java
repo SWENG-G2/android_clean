@@ -32,57 +32,71 @@ public class MyCustomAppIntro extends AppIntro {
                 "Welcome to Fauna Finder!",
                 "",
                 R.drawable.fauna_finder_logo_circular__1_,
-                R.color.light_orange
+                R.color.dark_orange
         ));
         addSlide(AppIntroFragment.createInstance(
                 "Home Page",
                 "Search for the campus using the search bar or selecting from the list",
-                R.drawable.main,
+                R.drawable.main_border,
                 R.color.light_orange
         ));
         addSlide(AppIntroFragment.createInstance(
                 "Campus selection",
                 "Search for the campus using the search bar or selecting from the list",
-                R.drawable.main_empty,
-                R.color.light_orange
+                R.drawable.main_empty_border,
+                R.color.dark_orange
         ));
 
         addSlide(AppIntroFragment.createInstance(
                 "Pick a Fauna",
                 "Select the fauna you would like to identify and learn about from either searching using the search bar or selecting from the list",
-                R.drawable.campus,
+                R.drawable.campus_border,
                 R.color.light_orange
         ));
         addSlide(AppIntroFragment.createInstance(
                 "Information",
                 "Here you can see the information on the wildlife. click on the icon on in the top right to hear what they sound like. tap the drop downs to see more information",
-                R.drawable.detail,
-                R.color.light_orange
+                R.drawable.detail_border,
+                R.color.dark_orange
         ));
         addSlide(AppIntroFragment.createInstance(
                 "About me",
                 "In the about me section you can see general information as well as a useful video showing the selected wildlife",
-                R.drawable.detail1,
+                R.drawable.detail1_border,
                 R.color.light_orange
         ));
         addSlide(AppIntroFragment.createInstance(
                 "Diet",
                 "In the diet section you can see a real life image of the wildlife and also learn about its diet",
-                R.drawable.detail2,
-                R.color.light_orange
+                R.drawable.detail2_border,
+                R.color.dark_orange
         ));
         addSlide(AppIntroFragment.createInstance(
                 "Location",
                 "In the Location section you can see more images as well as information about where you may find this wildlife on your campus",
-                R.drawable.detail3,
+                R.drawable.detail3_border,
                 R.color.light_orange
         ));
+        addSlide(AppIntroFragment.createInstance(
+                "Good Luck Finding your Fauna!",
+                "",
+                R.drawable.fauna_finder_logo_circular__1_,
+                R.color.dark_orange
+        ));
+
+        setTransformer(new AppIntroPageTransformerType.Parallax(
+                -1.0,
+                -1.0,
+                -1.0
+        ));
+        setColorTransitionsEnabled(true);
     }
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
         // Decide what to do when the user clicks on "Skip"
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
