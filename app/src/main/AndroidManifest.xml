@@ -16,9 +16,8 @@
         android:theme="@style/Theme.FaunaFinder"
         tools:targetApi="31">
         <activity
-            android:name=".xml.MyCustomAppIntro"
-            android:exported="true"
-            android:label="My Custom AppIntro">
+            android:name=".HowTo"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -57,11 +56,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"

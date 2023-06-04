@@ -7,6 +7,7 @@ import static androidx.test.espresso.assertion.PositionAssertions.isTopAlignedWi
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -55,14 +56,14 @@ public class AboutUsCreatorsViewTest {
     @Test
     public void descriptionDisplayedBelowLogoAboveCopyright()
     {
-        onView(withText(R.string.about_penelope)).check(matches(isDisplayed()));
-        onView(withText(R.string.about_penelope)).check(isCompletelyBelow(withId(R.id.penelopeLogo)));
-        onView(withText(R.string.about_penelope)).check(isCompletelyAbove(withText(R.string.penelope_copyright)));
+        onView(withText(R.string.aboutCreatorsText)).check(matches(isDisplayed()));
+        onView(withText(R.string.aboutCreatorsText)).check(isCompletelyBelow(withId(R.id.penelopeLogo)));
+        onView(withText(R.string.aboutCreatorsText)).check(isCompletelyAbove(withText(R.string.penelope_copyright)));
     }
     @Test
     public void copyrightDisplayedAtBottomOfPage()
     {
         onView(withText(R.string.penelope_copyright)).check(matches(isDisplayed()));
-        onView(withText(R.string.penelope_copyright)).check(isCompletelyBelow(withText(R.string.about_penelope)));
+        onView(withText(R.string.penelope_copyright)).check(isCompletelyBelow(withText(R.string.aboutCreatorsText)));
     }
 }

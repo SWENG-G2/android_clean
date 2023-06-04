@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Check whether app intro should be ran
+
         // Grab testing url if injected
         testingUrl = getIntent().getStringExtra(getString(R.string.testingUrl));
 

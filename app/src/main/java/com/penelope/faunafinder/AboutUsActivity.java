@@ -3,14 +3,12 @@ package com.penelope.faunafinder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 
@@ -40,6 +38,9 @@ public class AboutUsActivity extends AppCompatActivity {
         Button usageBtn = findViewById(R.id.usage_btn);
         usageBtn.setOnClickListener(view -> {
             // When the user clicks the button to see 'how to use the app' page:
+            Intent introIntent = new Intent(view.getContext(), HowTo.class);
+            introIntent.putExtra(getString(R.string.runIntro), true);
+            startActivity(introIntent);
         });
 
         Button creatorsBtn = findViewById(R.id.creators_btn);
@@ -48,6 +49,7 @@ public class AboutUsActivity extends AppCompatActivity {
             startActivity(new Intent(view.getContext(), AboutUsCreatorsActivity.class));
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home)
