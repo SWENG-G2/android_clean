@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -172,7 +171,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             Intent chooseLocationIntent = new Intent(this, CampusSelectionActivity.class);
             startActivity(chooseLocationIntent);
         } else if (itemId == R.id.action_about) { // About button
-            Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+            Intent chooseLocationIntent = new Intent(this, AboutUsActivity.class);
+            startActivity(chooseLocationIntent);
         } else if (campusId != NO_CAMPUS_SELECTED) { // Other possibility is only refresh
             if (swipeRefreshLayout != null) {
                 swipeRefreshLayout.setRefreshing(true);

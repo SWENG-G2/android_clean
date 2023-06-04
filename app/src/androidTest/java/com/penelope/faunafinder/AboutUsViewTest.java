@@ -7,6 +7,7 @@ import static androidx.test.espresso.assertion.PositionAssertions.isTopAlignedWi
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.intent.Intents;
@@ -47,14 +48,14 @@ public class AboutUsViewTest {
     @Test
     public void appNameDisplayedTopOfToolbar()
     {
-        onView(withText(R.string.fauna_finder)).check(matches(isDisplayed()));
-        onView(withText(R.string.fauna_finder)).check(isTopAlignedWith(withId(R.id.toolbar)));
+        onView(withText(R.string.app_name)).check(matches(isDisplayed()));
+        onView(withText(R.string.app_name)).check(isTopAlignedWith(withId(R.id.toolbar)));
     }
     @Test
     public void appVersionDisplayedBelowAppName()
     {
         onView(withText(R.string.version)).check(matches(isDisplayed()));
-        onView(withText(R.string.version)).check(isCompletelyBelow(withText(R.string.fauna_finder)));
+        onView(withText(R.string.version)).check(isCompletelyBelow(withText(R.string.app_name)));
     }
     @Test
     public void appLogoDisplayedBelowToolbar()
