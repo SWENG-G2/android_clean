@@ -38,10 +38,9 @@ public class ElementParserTest {
 
     @Test
     public void parseDelayBadInputs() {
-        // parseDelay calls parseInt
-        Assert.assertEquals(0, ElementParser.parseDelay(""));
-        Assert.assertEquals(0, ElementParser.parseDelay("Not a number"));
-        Assert.assertEquals(0, ElementParser.parseDelay("1:0"));
+        Assert.assertEquals(NULL_RET, ElementParser.parseDelay(""));
+        Assert.assertEquals(NULL_RET, ElementParser.parseDelay("Not a number"));
+        Assert.assertEquals(NULL_RET, ElementParser.parseDelay("1:0"));
     }
 
     @Test

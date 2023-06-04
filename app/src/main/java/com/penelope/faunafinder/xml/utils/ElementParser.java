@@ -100,9 +100,14 @@ public abstract class ElementParser {
      * @param stringValue The delay string.
      * @return The delay in milliseconds or -1.
      */
-    protected static int parseDelay(String stringValue) {
-        if (stringValue != null)
-            return parseInt(stringValue) * 1000;
+    protected static long parseDelay(String stringValue) {
+        if (stringValue != null) {
+            try {
+                return Long.parseLong(stringValue) * 1000L;
+            } catch (NumberFormatException numberFormatException) {
+                return -1;
+            }
+        }
         return -1;
     }
 }
