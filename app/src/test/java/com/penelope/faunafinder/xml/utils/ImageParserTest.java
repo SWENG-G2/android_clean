@@ -42,7 +42,6 @@ public class ImageParserTest {
     public void parseImageWorks() throws XmlPullParserException, IOException {
         XmlPullParser xmlPullParser = getXpp(GOOD_XML);
         ImageElement realImageElement = ImageParser.parseImage(xmlPullParser);
-        ImageElement expectedImageElement = new ImageElement(GOOD_XML_URL, GOOD_XML_WIDTH, GOOD_XML_HEIGHT, GOOD_XML_X_COORDINATE, GOOD_XML_Y_COORDINATE, GOOD_XML_ROTATION, GOOD_XML_DELAY, GOOD_XML_TIME_ON_SCREEN);
         String realImageElementUrl = realImageElement.getUrl();
         int realImageElementWidth = realImageElement.getWidth();
         int realImageElementHeight = realImageElement.getHeight();

@@ -35,8 +35,11 @@ public class AudioParserTest {
 
     @Test
     public void parseAudioWorks() throws XmlPullParserException, IOException {
+        //parseAudio returns a new audio element with the appropriate attributes specified on the xml file
+        //I set getters in AudioElement and PresentationElement to assert each parameter
         XmlPullParser xmlPullParser = getXpp(GOOD_XML);
         AudioElement realAudioElement = AudioParser.parseAudio(xmlPullParser);
+        AudioElement expectedAudioElement = new AudioElement(GOOD_XML_URL, GOOD_XML_BOOLEAN, GOOD_XML_X_COORDINATE, GOOD_XML_Y_COORDINATE);
         String realAudioElementUrl = realAudioElement.getUrl();
         boolean realAudioElementLoop = realAudioElement.isLoop();
         int realAudioElementXCoordinate = realAudioElement.getX();

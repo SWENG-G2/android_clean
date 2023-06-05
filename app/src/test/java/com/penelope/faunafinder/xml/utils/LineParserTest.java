@@ -1,5 +1,7 @@
 package com.penelope.faunafinder.xml.utils;
 
+import android.graphics.Color;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,8 +25,8 @@ public class LineParserTest {
     private static final int GOOD_XML_FROM_Y = 110;
     private static final int GOOD_XML_TO_X = 400;
     private static final int GOOD_XML_TO_Y = 130;
-    //colour is wrong for now
-    private static final int GOOD_XML_COLOUR = android.R.color.holo_red_light;
+    //Color is wrong for now
+    private static final int GOOD_XML_COLOUR = Color.RED;
 
     private static final String BAD_XML = "<line thickness=\"vnefei\" fromX=\"djcvwdv\" fromY=\"wdvkncssi\" toX=\"fved\" toY=\"wjdvcb\" colour=\"123\" />";
 
@@ -64,7 +66,7 @@ public class LineParserTest {
         XmlPullParser xmlPullParser = getXpp(BAD_XML);
         LineElement realLineElement = LineParser.parseLine(xmlPullParser);
         //test is failing because expected colour is transparent but the actual colour is 0??
-        LineElement expectedLineElement = new LineElement(0,0,0,0,0, android.R.color.transparent);
+        LineElement expectedLineElement = new LineElement(0,0,0,0,0, Color.TRANSPARENT);
         int realLineElementThickness = realLineElement.getThickness();
         int realLineElementFromX = realLineElement.getFromX();
         int realLineElementFromY = realLineElement.getFromY();

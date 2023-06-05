@@ -1,5 +1,7 @@
 package com.penelope.faunafinder.xml.utils;
 
+import android.graphics.Color;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +23,7 @@ public class RectangleParserTest {
     private static final int GOOD_XML_HEIGHT = 600;
     private static final int GOOD_XML_COLOUR = Color.CYAN;
     private static final int GOOD_XML_BORDER_WIDTH = 5;
-    private static final int GOOD_XML_BORDER_COLOUR = COLOR.RED;
+    private static final int GOOD_XML_BORDER_COLOUR = Color.RED;
     private static final int GOOD_XML_X_COORDINATE = 50;
     private static final int GOOD_XML_Y_COORDINATE = 350;
 
@@ -42,7 +44,6 @@ public class RectangleParserTest {
     @Test
     public void parseRectangleWorks() throws XmlPullParserException, IOException {
         XmlPullParser xmlPullParser = getXpp(GOOD_XML);
-        RectangleElement expectedRectangleElement = new RectangleElement(GOOD_XML_WIDTH,GOOD_XML_HEIGHT,GOOD_XML_COLOUR,GOOD_XML_BORDER_WIDTH,GOOD_XML_BORDER_COLOUR,GOOD_XML_X_COORDINATE,GOOD_XML_Y_COORDINATE);
         RectangleElement realRectangleElement = RectangleParser.parseRectangle(xmlPullParser);
         int realRectangleElementWidth = realRectangleElement.getWidth();
         int realRectangleElementHeight = realRectangleElement.getHeight();

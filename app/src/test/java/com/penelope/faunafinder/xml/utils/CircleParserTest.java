@@ -61,7 +61,7 @@ public class CircleParserTest {
     @Test
     public void circleParseBadInputs() throws XmlPullParserException, IOException {
         XmlPullParser xmlPullParser = getXpp(BAD_XML);
-        CircleElement expectedCircleElement = new CircleElement(0, android.R.color.transparent, 0, android.R.color.transparent, 0, 0);
+        CircleElement expectedCircleElement = new CircleElement(0, Color.TRANSPARENT, 0, Color.TRANSPARENT, 0, 0);
         int expectedCircleElementRadius = expectedCircleElement.getRadius();
         int expectedCircleElementColour = expectedCircleElement.getColour();
         int expectedCircleElementBorderWidth = expectedCircleElement.getBorderWidth();
