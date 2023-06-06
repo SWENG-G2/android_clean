@@ -34,8 +34,7 @@ public class TextParserTest {
     @Test
     public void parseTextWorks() throws XmlPullParserException, IOException {
         XmlPullParser xmlPullParser = getXpp(GOOD_XML);
-        //Color is wrong for now
-        TextElement expectedTextElement = new TextElement("mono", 32, Color.CYAN, 300, 250, 500, 100, 5);
+        TextElement expectedTextElement = new TextElement("mono", 32, Color.parseColor("#FFFF7B00"), 300, 250, 500, 100, 5L * 1000);
         TextElement realTextElement = TextParser.parseText(xmlPullParser);
         int expectedTextElementXCoordinate = expectedTextElement.getX();
         int expectedTextElementYCoordinate = expectedTextElement.getY();
