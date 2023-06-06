@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Ducks list  -->
+    <dimen name="duck_list_item_padding">15dp</dimen>
+    <dimen name="duck_list_item_h_margin">10dp</dimen>
+    <dimen name="duck_list_item_image_size">70dp</dimen>
+    <dimen name="duck_list_item_stroke">2dp</dimen>
+    <dimen name="duck_list_item_image_stroke">1.5dp</dimen>
+    <dimen name="duck_list_item_text_margin_start">40dp</dimen>
+    <!--  Search bar  -->
+    <dimen name="searchbar_radius">25dp</dimen>
+    <dimen name="searchbar_stroke">3dp</dimen>
+    <!-- General -->
+    <dimen name="item_vertical_spacing">15dp</dimen>
+    <!-- Slide -->
+    <dimen name="slide_border">2.5dp</dimen>
+    <dimen name="slide_padding">10dp</dimen>
+</resources>
