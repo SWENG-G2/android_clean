@@ -28,9 +28,13 @@ import com.penelope.faunafinder.xml.slide.Slide;
 
 import java.util.ArrayList;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * <code>SlideViewHolder</code> is the view holder for slides displayed on screen.
  */
+@Getter
 public class SlideViewHolder extends RecyclerView.ViewHolder {
     private final View itemView;
     private final ViewGroup container;
@@ -49,6 +53,9 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
     private static final int TEXT_BASE_ID = 5000;
     private static final int VIDEO_BASE_ID = 6000;
     private static final int CANVAS_ID = 7000;
+
+    @Setter
+    private CanvasView canvasView;
 
     /**
      * <code>SlideViewHolder</code> constructor.
@@ -272,10 +279,8 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
 
     /**
      * Sets up invalidation callbacks for the CanvasView to remove expired shapes.
-     *
-     * @param canvasView The CanvasView in use.
      */
-    private void setUpInvalidate(CanvasView canvasView) {
+    private void setUpInvalidate() {
         for (ShapeElement element : shapes) {
             long timeOnScreen = element.getTimeOnScreen();
             if (timeOnScreen > -1) {
@@ -313,27 +318,27 @@ public class SlideViewHolder extends RecyclerView.ViewHolder {
                     @Override
                     public void onGlobalLayout() {
                         // Draw shapes on canvas when view is drawn (size has been calculated)
-                        CanvasView canvas = relativeLayout.findViewById(CANVAS_ID);
-                        if (canvas == null) {
-                            canvas = new CanvasView(relativeLayout.getContext());
-                            canvas.setId(CANVAS_ID);
+                        canvasView = relativeLayout.findViewById(CANVAS_ID);
+                        if (canvasView == null) {
+                            canvasView = new CanvasView(relativeLayout.getContext());
+                            canvasView.setId(CANVAS_ID);
 
                             RelativeLayout.LayoutParams layoutParams =
                                     new RelativeLayout.LayoutParams
                                             (RelativeLayout.LayoutParams.MATCH_PARENT,
                                                     RelativeLayout.LayoutParams.MATCH_PARENT);
-                            canvas.setLayoutParams(layoutParams);
+                            canvasView.setLayoutParams(layoutParams);
 
-                            relativeLayout.addView(canvas);
+                            relativeLayout.addView(canvasView);
                         }
 
-                        canvas.setSlide(slide);
-                        canvas.setShapes(shapes);
+                        canvasView.setSlide(slide);
+                        canvasView.setShapes(shapes);
 
                         // Bring canvas to bottom, other views should be on top
-                        canvas.setZ(-1);
+                        canvasView.setZ(-1);
 
-                        setUpInvalidate(canvas);
+                        setUpInvalidate();
 
                         relativeLayout.getViewTreeObserver()
                                 .removeOnGlobalLayoutListener(this);

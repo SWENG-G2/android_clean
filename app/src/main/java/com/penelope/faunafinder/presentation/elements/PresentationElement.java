@@ -20,8 +20,8 @@ public abstract class PresentationElement {
     protected static final int MATCH_WIDTH_CLIENT_SIDE = -1;
     protected static final int ALIGN_CENTER_OF_PARENT = -2;
     private static final int ALIGN_END_OF_PARENT = -3;
-    protected static final int MATCH_PARENT = -4;
-    protected static final int WRAP_CONTENT = -5;
+    public static final int MATCH_PARENT = -4;
+    public static final int WRAP_CONTENT = -5;
 
     // View types
     public static final String AUDIO_ELEMENT = "audio";
