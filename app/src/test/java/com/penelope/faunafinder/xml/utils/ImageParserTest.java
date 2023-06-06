@@ -1,5 +1,7 @@
 package com.penelope.faunafinder.xml.utils;
 
+import com.penelope.faunafinder.presentation.elements.ImageElement;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,9 +13,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.StringReader;
 
-import com.penelope.faunafinder.presentation.elements.ImageElement;
-import com.penelope.faunafinder.xml.utils.ImageParser;
-
 @RunWith(RobolectricTestRunner.class)
 public class ImageParserTest {
     private static final String GOOD_XML = "<image url=\"\" width=\"300\" height=\"300\" rotation=\"69\" delay=\"3\" xCoordinate=\"100\" yCoordinate=\"120\" timeOnScreen=\"00:00:20\" />";
@@ -23,10 +22,13 @@ public class ImageParserTest {
     private static final int GOOD_XML_X_COORDINATE = 100;
     private static final int GOOD_XML_Y_COORDINATE = 120;
     private static final int GOOD_XML_ROTATION = 69;
-    private static final long GOOD_XML_DELAY = 3000;
-    private static final long GOOD_XML_TIME_ON_SCREEN = 3000;
+    private static final long GOOD_XML_DELAY = 3L * 1000;
+    private static final long GOOD_XML_TIME_ON_SCREEN = 20L * 1000;
 
-    private static final String BAD_XML = "<image url=\"\" width=\"abruvh\" height=\"sfvhbi\" rotation=\"adhcue\" delay=\"djwhff\" xCoordinate=\"adhbfbd\" yCoordinate=\"ahdj\" timeOnScreen=\"bugftyfy\" />";
+    private static final String BAD_XML = "<image url=\"-1\" width=\"abruvh\" height=\"sfvhbi\" rotation=\"adhcue\" delay=\"djwhff\" xCoordinate=\"adhbfbd\" yCoordinate=\"ahdj\" timeOnScreen=\"bugftyfy\" />";
+    private static final int BAD_XML_INTEGER = 0;
+    private static final String BAD_XML_URL = "-1";
+    private static final int BAD_XML_TIME = -1;
 
 
     private XmlPullParser getXpp(String mockInput) throws XmlPullParserException, IOException {
@@ -59,7 +61,7 @@ public class ImageParserTest {
         Assert.assertEquals(GOOD_XML_Y_COORDINATE, realImageElementYCoordinate);
         Assert.assertEquals(GOOD_XML_ROTATION, realImageElementRotation);
         Assert.assertEquals(GOOD_XML_DELAY, realImageElementDelay);
-        Assert.assertEquals(GOOD_XML_TIME_ON_SCREEN, realImageElementDelay);
+        Assert.assertEquals(GOOD_XML_TIME_ON_SCREEN, realImageElementTimeOnScreen);
 
 
     }
@@ -68,8 +70,6 @@ public class ImageParserTest {
     public void parseImageBadInputs() throws XmlPullParserException, IOException {
         XmlPullParser xmlPullParser = getXpp(BAD_XML);
         ImageElement realImageElement = ImageParser.parseImage(xmlPullParser);
-        //why does the delay return 0 instead of -1 as it is stated in the parseDelay method? I tried with -1 and the test fails
-        ImageElement expectedImageElement = new ImageElement("", 0, 0, 0, 0, 0, -1, -1);
         String realImageElementUrl = realImageElement.getUrl();
         int realImageElementWidth = realImageElement.getWidth();
         int realImageElementHeight = realImageElement.getHeight();
@@ -79,25 +79,14 @@ public class ImageParserTest {
         long realImageElementDelay = realImageElement.getDelay();
         long realImageElementTimeOnScreen = realImageElement.getTimeOnScreen();
 
-        String expectedImageElementUrl = expectedImageElement.getUrl();
-        int expectedImageElementWidth = expectedImageElement.getWidth();
-        int expectedImageElementHeight = expectedImageElement.getHeight();
-        int expectedImageElementXCoordinate = expectedImageElement.getX();
-        int expectedImageElementYCoordinate = expectedImageElement.getY();
-        int expectedImageElementRotation = expectedImageElement.getRotation();
-        long expectedImageElementDelay = expectedImageElement.getDelay();
-        long expectedImageElementTimeOnScreen = expectedImageElement.getTimeOnScreen();
-
-        Assert.assertEquals(expectedImageElementUrl, realImageElementUrl);
-        Assert.assertEquals(expectedImageElementWidth, realImageElementWidth);
-        Assert.assertEquals(expectedImageElementHeight, realImageElementHeight);
-        Assert.assertEquals(expectedImageElementXCoordinate, realImageElementXCoordinate);
-        Assert.assertEquals(expectedImageElementYCoordinate, realImageElementYCoordinate);
-        Assert.assertEquals(expectedImageElementRotation, realImageElementRotation);
-        Assert.assertEquals(expectedImageElementDelay, realImageElementDelay);
-        Assert.assertEquals(expectedImageElementTimeOnScreen, realImageElementTimeOnScreen);
-
-
+        Assert.assertEquals(BAD_XML_URL, realImageElementUrl);
+        Assert.assertEquals(BAD_XML_INTEGER, realImageElementWidth);
+        Assert.assertEquals(BAD_XML_INTEGER, realImageElementHeight);
+        Assert.assertEquals(BAD_XML_INTEGER, realImageElementXCoordinate);
+        Assert.assertEquals(BAD_XML_INTEGER, realImageElementYCoordinate);
+        Assert.assertEquals(BAD_XML_INTEGER, realImageElementRotation);
+        Assert.assertEquals(BAD_XML_TIME, realImageElementDelay);
+        Assert.assertEquals(BAD_XML_TIME, realImageElementTimeOnScreen);
     }
 
 

@@ -29,6 +29,10 @@ public abstract class ElementParser {
     protected static final String BORDER_COLOUR = "borderColour";
     protected static final String TIME_ON_SCREEN = "timeOnScreen";
     protected static final String DELAY = "delay";
+    protected static final String SHADOW_COLOUR = "shadowColour";
+    protected static final String SHADOW_RADIUS = "shadowRadius";
+    protected static final String SHADOW_DX = "shadowDx";
+    protected static final String SHADOW_DY = "shadowDy";
 
     private static final int EXPECTED_COLOUR_STRING_LENGTH = 9;
     // Colour string is #AARRGGBB according to standard
