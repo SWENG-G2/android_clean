@@ -12,6 +12,7 @@ import com.penelope.faunafinder.xml.slide.Slide;
 
 import java.util.List;
 
+import lombok.Getter;
 import lombok.Setter;
 
 /**
@@ -21,6 +22,7 @@ public class CanvasView extends View {
     @Setter
     private Slide slide = null;
     @Setter
+    @Getter
     private List<ShapeElement> shapes = null;
 
     public CanvasView(Context context) {
