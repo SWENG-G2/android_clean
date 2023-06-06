@@ -23,7 +23,11 @@ public class CircleParser extends ElementParser {
         int y = parseInt(xmlPullParser.getAttributeValue(NAME_SPACE, Y_COORDINATE));
         long timeOnScreen = parseTimeOnScreen(xmlPullParser.getAttributeValue(NAME_SPACE,
                 TIME_ON_SCREEN));
+        int shadowColour = parseColour(xmlPullParser.getAttributeValue(NAME_SPACE, SHADOW_COLOUR));
+        int shadowDx = parseInt(xmlPullParser.getAttributeValue(NAME_SPACE, SHADOW_DX));
+        int shadowDy = parseInt(xmlPullParser.getAttributeValue(NAME_SPACE, SHADOW_DY));
+        int shadowRadius = parseInt(xmlPullParser.getAttributeValue(NAME_SPACE, SHADOW_RADIUS));
 
-        return new CircleElement(radius, colour, borderWidth, borderColour, x, y, timeOnScreen);
+        return new CircleElement(radius, colour, borderWidth, borderColour, x, y, timeOnScreen, shadowColour, shadowDx, shadowDy, shadowRadius);
     }
 }

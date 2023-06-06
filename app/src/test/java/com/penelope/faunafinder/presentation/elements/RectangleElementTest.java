@@ -31,12 +31,16 @@ public class RectangleElementTest {
     private static final int X = 10;
     private static final int Y = 20;
     private static final long TIME_ON_SCREEN = -1;
+    private static final int SHADOW_COLOUR = Color.RED;
+    private static final int SHADOW_DX = 10;
+    private static final int SHADOW_DY = 10;
+    private static final int SHADOW_RADIUS = 10;
 
     @Test
     @Config(qualifiers = "mdpi")
     public void drawIsCorrect() {
         // Create rectangle element
-        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
+        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN, SHADOW_COLOUR, SHADOW_DX, SHADOW_DY, SHADOW_RADIUS);
 
         // Mock canvas and slide objects
         Canvas canvas = mock(Canvas.class);
@@ -79,14 +83,14 @@ public class RectangleElementTest {
 
     @Test
     public void getViewTypeIsCorrect() {
-        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
+        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN, SHADOW_COLOUR, SHADOW_DX, SHADOW_DY, SHADOW_RADIUS);
 
         assertNull(rectangleElement.getViewType());
     }
 
     @Test
     public void getSearchableContentIsCorrect() {
-        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
+        RectangleElement rectangleElement = new RectangleElement(WIDTH, HEIGHT, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN, SHADOW_COLOUR, SHADOW_DX, SHADOW_DY, SHADOW_RADIUS);
 
         assertNull(rectangleElement.getSearchableContent());
     }

@@ -29,12 +29,16 @@ public class CircleElementTest {
     private static final int X = 20;
     private static final int Y = 30;
     private static final long TIME_ON_SCREEN = -1;
+    private static final int SHADOW_COLOUR = Color.RED;
+    private static final int SHADOW_DX = 10;
+    private static final int SHADOW_DY = 10;
+    private static final int SHADOW_RADIUS = 10;
 
     @Test
     @Config(qualifiers = "mdpi")
     public void drawIsCorrect() {
         // create circle element
-        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
+        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN, SHADOW_COLOUR, SHADOW_DX, SHADOW_DY, SHADOW_RADIUS);
 
         // mock canvas and slide objects
         Canvas canvas = mock(Canvas.class);
@@ -79,14 +83,14 @@ public class CircleElementTest {
 
     @Test
     public void getViewTypeIsCorrect() {
-        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
+        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN, SHADOW_COLOUR, SHADOW_DX, SHADOW_DY, SHADOW_RADIUS);
 
         assertNull(circleElement.getViewType());
     }
 
     @Test
     public void getSearchableContentIsCorrect() {
-        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN);
+        CircleElement circleElement = new CircleElement(RADIUS, COLOUR, BORDER_WIDTH, BORDER_COLOUR, X, Y, TIME_ON_SCREEN, SHADOW_COLOUR, SHADOW_DX, SHADOW_DY, SHADOW_RADIUS);
 
         assertNull(circleElement.getSearchableContent());
     }

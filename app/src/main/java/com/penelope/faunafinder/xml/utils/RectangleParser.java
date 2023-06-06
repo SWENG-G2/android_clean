@@ -25,8 +25,12 @@ public class RectangleParser extends ElementParser {
         int y = parseInt(xmlPullParser.getAttributeValue(NAME_SPACE, Y_COORDINATE));
         long timeOnScreen = parseTimeOnScreen(xmlPullParser.getAttributeValue(NAME_SPACE,
                 TIME_ON_SCREEN));
+        int shadowColour = parseColour(xmlPullParser.getAttributeValue(NAME_SPACE, SHADOW_COLOUR));
+        int shadowDx = parseInt(xmlPullParser.getAttributeValue(NAME_SPACE, SHADOW_DX));
+        int shadowDy = parseInt(xmlPullParser.getAttributeValue(NAME_SPACE, SHADOW_DY));
+        int shadowRadius = parseInt(xmlPullParser.getAttributeValue(NAME_SPACE, SHADOW_RADIUS));
 
         return new RectangleElement(width, height, colour, borderWidth, borderColour, x, y,
-                timeOnScreen);
+                timeOnScreen, shadowColour, shadowDx, shadowDy, shadowRadius);
     }
 }

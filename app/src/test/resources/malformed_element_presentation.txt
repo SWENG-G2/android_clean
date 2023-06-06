@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<presentation xmlns="urn:SWENG" xmlns:SWENG="https://raw.githubusercontent.com/SWENG-G2/xml_standard/proposal-1/standard.xsd">
+  <info>
+    <title>Barnacle Goose</title>
+    <author>a</author>
+    <date>2023-06-05</date>
+    <numSlides>4</numSlides>
+  </info>
+  <slide width="1920" height="485" title="heroSlide">
+    <rectangle width="1920" height="100" xCoordinate="0" yCoordinate="0" colour="#E89266FF"
+    <text xCoordinate="20" yCoordinate="25" colour="#000000FF" fontName="mono" fontSize="28" width="-4" height="-5">Barnacle Goose</text>
+    <audio url="https://penelope.barillari.me:8080/audio/4/Barnacle Goose-0163823380.wav" loop="false" xCoordinate="-3" yCoordinate="0"/>
+    <image url="https://penelope.barillari.me:8080/image/4/Main image-4340404026_processed.png" width="1700" height="360" xCoordinate="-2" yCoordinate="115"/>
+    <circle radius="175" xCoordinate="-2" yCoordinate="-120" colour="#00000000" borderWidth="15" borderColour="#8A8178FF"/>
+  </slide>
+</presentation>
