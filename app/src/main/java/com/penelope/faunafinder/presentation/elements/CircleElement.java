@@ -1,7 +1,9 @@
 package com.penelope.faunafinder.presentation.elements;
 
 
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.penelope.faunafinder.xml.slide.Slide;
@@ -25,6 +27,7 @@ public class CircleElement extends PresentationElement implements ShapeElement {
     private final int shadowRadius;
     private Paint borderPaint;
     private Paint fillPaint;
+    private Paint shadowPaint;
 
     /**
      * <code>CircleElement</code> constructor.
@@ -78,6 +81,18 @@ public class CircleElement extends PresentationElement implements ShapeElement {
         } else
             cy = dpToPx(y);
 
+
+        // Draw shadow
+        if (shadowColour != Color.TRANSPARENT) {
+            int blurRadius = (shadowRadius <= 0) ? 1 : shadowRadius;
+            int dx = Math.round((shadowDx * slide.getCalculatedWidth()) / (float) slide.getWidth());
+            int dy = dpToPx(shadowDy);
+            shadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            shadowPaint.setColor(shadowColour);
+            shadowPaint.setMaskFilter(new BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL));
+
+            canvas.drawCircle(cx + dx, cy + dy, calculatedRadius, shadowPaint);
+        }
 
         // Set up paint objects
         borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

@@ -1,24 +1,26 @@
 package com.penelope.faunafinder.presentation.elements;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
 
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.penelope.faunafinder.xml.slide.Slide;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-
-import com.penelope.faunafinder.xml.slide.Slide;
 
 @RunWith(RobolectricTestRunner.class)
 public class RectangleElementTest {
@@ -35,6 +37,11 @@ public class RectangleElementTest {
     private static final int SHADOW_DX = 10;
     private static final int SHADOW_DY = 10;
     private static final int SHADOW_RADIUS = 10;
+
+    private static final int CALCULATED_X = 5;
+    private static final int CALCULATED_WIDTH = 55;
+    private static final int CALCULATED_HEIGHT = 220;
+    private static final int CALCULATED_SHADOW_DX = 5;
 
     @Test
     @Config(qualifiers = "mdpi")
@@ -56,6 +63,8 @@ public class RectangleElementTest {
         // create paint object with expected params
         Paint expectedBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         Paint expectedFillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        // Blur mask can't be tested. It has no accessible fields
+        Paint expectedShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         expectedBorderPaint.setColor(BORDER_COLOUR);
         expectedBorderPaint.setStrokeWidth(BORDER_WIDTH);
@@ -64,9 +73,12 @@ public class RectangleElementTest {
         expectedFillPaint.setColor(COLOUR);
         expectedFillPaint.setStyle(Paint.Style.FILL);
 
+        expectedShadowPaint.setColor(SHADOW_COLOUR);
+
         // get the actual paint object
         Paint actualBorderPaint = rectangleElement.getBorderPaint();
         Paint actualFillPaint = rectangleElement.getFillPaint();
+        Paint actualShadowPaint = rectangleElement.getShadowPaint();
 
         // verify expected against the actual
         assertEquals(expectedBorderPaint.getColor(), actualBorderPaint.getColor());
@@ -74,6 +86,12 @@ public class RectangleElementTest {
         assertEquals(expectedBorderPaint.getStyle(), actualBorderPaint.getStyle());
         assertEquals(expectedFillPaint.getColor(), actualFillPaint.getColor());
         assertEquals(expectedFillPaint.getStyle(), actualFillPaint.getStyle());
+        assertEquals(expectedShadowPaint.getColor(), actualShadowPaint.getColor());
+
+        verify(canvas, times(1)).drawRect(
+                eq(new Rect(CALCULATED_X + CALCULATED_SHADOW_DX, Y + SHADOW_DY, CALCULATED_WIDTH + CALCULATED_SHADOW_DX, CALCULATED_HEIGHT + SHADOW_DY)),
+                any(Paint.class)
+        );
 
         verify(canvas, times(2)).drawRect(
                 eq(new Rect(5, 20, 55, 220)),

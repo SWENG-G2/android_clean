@@ -1,7 +1,9 @@
 package com.penelope.faunafinder.presentation.elements;
 
 
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
@@ -27,6 +29,7 @@ public class RectangleElement extends PresentationElement implements ShapeElemen
     private final int shadowRadius;
     private Paint borderPaint;
     private Paint fillPaint;
+    private Paint shadowPaint;
 
     /**
      * <code>RectangleElement</code> constructor.
@@ -71,6 +74,19 @@ public class RectangleElement extends PresentationElement implements ShapeElemen
         // Set up paint objects
         borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        // Draw shadow
+        if (shadowColour != Color.TRANSPARENT) {
+            int blurRadius = (shadowRadius <= 0) ? 1 : shadowRadius;
+            int dx = Math.round((shadowDx * slide.getCalculatedWidth()) / (float) slide.getWidth());
+            int dy = dpToPx(shadowDy);
+            shadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            shadowPaint.setColor(shadowColour);
+            shadowPaint.setMaskFilter(new BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL));
+
+            Rect shadow = new Rect(left + dx, top + dy, right + dx, bottom + dy);
+            canvas.drawRect(shadow, shadowPaint);
+        }
 
         borderPaint.setColor(borderColour);
         borderPaint.setStrokeWidth(border);

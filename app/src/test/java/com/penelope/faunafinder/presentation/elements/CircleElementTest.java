@@ -30,9 +30,12 @@ public class CircleElementTest {
     private static final int Y = 30;
     private static final long TIME_ON_SCREEN = -1;
     private static final int SHADOW_COLOUR = Color.RED;
-    private static final int SHADOW_DX = 10;
+    private static final int SHADOW_DX = -10;
     private static final int SHADOW_DY = 10;
     private static final int SHADOW_RADIUS = 10;
+    private static final float CX = 10;
+    private static final float CY = 30;
+    private static final float CALCULATED_SHADOW_DX = -5;
 
     @Test
     @Config(qualifiers = "mdpi")
@@ -62,9 +65,14 @@ public class CircleElementTest {
         expectedFillPaint.setColor(COLOUR);
         expectedFillPaint.setStyle(Paint.Style.FILL);
 
+        // Blur mask can't be tested. It has no accessible fields
+        Paint expectedShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        expectedShadowPaint.setColor(SHADOW_COLOUR);
+
         // get the actual paint object
         Paint actualBorderPaint = circleElement.getBorderPaint();
         Paint actualFillPaint = circleElement.getFillPaint();
+        Paint actualShadowPaint = circleElement.getShadowPaint();
 
         // verify expected against the actual
         assertEquals(expectedBorderPaint.getColor(), actualBorderPaint.getColor());
@@ -72,12 +80,19 @@ public class CircleElementTest {
         assertEquals(expectedBorderPaint.getStyle(), actualBorderPaint.getStyle());
         assertEquals(expectedFillPaint.getColor(), actualFillPaint.getColor());
         assertEquals(expectedFillPaint.getStyle(), actualFillPaint.getStyle());
+        assertEquals(expectedShadowPaint.getColor(), actualShadowPaint.getColor());
 
         // verify the functions were called correctly
+        verify(canvas, times(1)).drawCircle(
+                eq(CX + CALCULATED_SHADOW_DX),
+                eq(CY + SHADOW_DY),
+                eq((float) RADIUS),
+                any(Paint.class));
+
         verify(canvas, times(2)).drawCircle(
-                eq(10f),
-                eq(30f),
-                eq(10f),
+                eq(CX),
+                eq(CY),
+                eq((float) RADIUS),
                 any(Paint.class));
     }
 
